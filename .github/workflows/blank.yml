@@ -230,7 +230,7 @@ jobs:
           ls .
           echo Run FlowDroid April 2017
           java -version 
-          java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -tb /home/runner/work/TaintBench/TaintBench/findings -tba /home/runner/work/TaintBench/TaintBench/TaintBench -c taintbench_brew_configs/fdold/config.xml -rules taintbench_brew_configs/fdold/TaintBench/rules_3.xml -r -nogui -t 20m 
+          java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/fdold/config.xml -rules taintbench_brew_configs/fdold/TaintBench/rules_3.xml -r -nogui -t 20m 
 
 
 
