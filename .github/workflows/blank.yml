@@ -37,7 +37,12 @@ jobs:
         tag: 'TaintAnalysisTools'
         path: AnalysisTools
         file: Amandroid_3.1.2_Release.zip
-      
+
+    - name: Unzip
+      uses: TonyBogdanov/zip@1.0
+      with:
+        args: unzip -qq ./AnalysisTools/Amandroid_3.1.2_Release.zip -d ./AnalysisTools/Amandroid_3.1.2_Release
+
     - name: Download Amandroid 3.2.2
       uses: Legion2/download-release-action@v2.1.0
       with:
@@ -45,6 +50,11 @@ jobs:
         tag: 'TaintAnalysisTools'
         path: AnalysisTools
         file: Amandroid_3.2.0_Release.zip
+
+    - name: Unzip
+      uses: TonyBogdanov/zip@1.0
+      with:
+        args: unzip -qq ./AnalysisTools/Amandroid_3.2.0_Release.zip -d ./AnalysisTools/Amandroid_3.2.0_Release
 
     - name: Download FlowDroid April 2017
       uses: Legion2/download-release-action@v2.1.0
@@ -54,6 +64,11 @@ jobs:
         path: AnalysisTools
         file: FlowDroid_April_2017_Nightly.zip
 
+    - name: Unzip
+      uses: TonyBogdanov/zip@1.0
+      with:
+        args: unzip -qq ./AnalysisTools/FlowDroid_April_2017_Nightly.zip -d ./AnalysisTools/FlowDroid_April_2017_Nightly
+
     - name: Download FlowDroid 2.7.1
       uses: Legion2/download-release-action@v2.1.0
       with:
@@ -61,7 +76,12 @@ jobs:
         tag: 'TaintAnalysisTools'
         path: AnalysisTools
         file: FlowDroid_2.7.1_Release.zip 
-        
+    
+    - name: Unzip
+      uses: TonyBogdanov/zip@1.0
+      with:
+        args: unzip -qq ./AnalysisTools/FlowDroid_2.7.1_Release.zip -d ./AnalysisTools/FlowDroid_2.7.1_Release
+
     - name: Print Downloaded Analysis Tools
       run: ls AnalysisTools
          
@@ -73,15 +93,11 @@ jobs:
         path: TaintBench
         file: TaintBench.zip
 
-    - name: Print DowNloaded TaintBench
-      run: ls TaintBench
-                      
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
+    - name: Unzip
+      uses: TonyBogdanov/zip@1.0
+      with:
+        args: unzip -qq ./TaintBench/TaintBench.zip -d ./TaintBench/TaintBench
 
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
+    - name: Print Downloaded TaintBench
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+         ls TaintBench
