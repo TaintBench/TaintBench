@@ -30,21 +30,41 @@ jobs:
     - name: Print information
       run: ls
     
-    - name: Download Amandroid
+    - name: Download Amandroid 3.1.2
       uses: Legion2/download-release-action@v2.1.0
       with:
         repository: TaintBench/TaintBench
         tag: 'TaintAnalysisTools'
-        path: Amandroid_3.1.2
+        path: AnalysisTools
         file: Amandroid_3.1.2_Release.zip
-  
-    - name: Print information
-      run: |
-          ls
-          ls Amandroid_3.1.2
-          
-          
       
+    - name: Download Amandroid 3.2.2
+      uses: Legion2/download-release-action@v2.1.0
+      with:
+        repository: TaintBench/TaintBench
+        tag: 'TaintAnalysisTools'
+        path: AnalysisTools
+        file: Amandroid_3.2.0_Release.zip
+
+    - name: Download FlowDroid April 2017
+      uses: Legion2/download-release-action@v2.1.0
+      with:
+        repository: TaintBench/TaintBench
+        tag: 'TaintAnalysisTools'
+        path: AnalysisTools
+        file: FlowDroid_April_2017_Nightly.zip
+
+    - name: Download FlowDroid 2.7.1
+      uses: Legion2/download-release-action@v2.1.0
+      with:
+        repository: TaintBench/TaintBench
+        tag: 'TaintAnalysisTools'
+        path: AnalysisTools
+        file: FlowDroid_2.7.1_Release.zip
+      
+    - name: Print Downloaded Analysis Tools
+      run: ls AnalysisTools
+                      
     # Runs a single command using the runners shell
     - name: Run a one-line script
       run: echo Hello, world!
