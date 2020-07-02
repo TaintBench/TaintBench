@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!--
+%QUERY%:		The original query before applying the rule without question mark, if the original query ends with a question mark
+%FILE_i%:		File number i (i in [1, n]) from the original query
+%FEATURE_i%:	Feature number i (i in [1, n]) from the original query
+%FEATURES%:		All features from the original query
+-->
+
+<rules>
+	<rule always="true">
+		<priority>1</priority>
+		<query>%QUERY% WITH 'SourcesAndSinks' = { TOTS [ SourcesAndSinks IN App(%FILE_1%) WITH 'TAINTBENCH_ID' = '-1' ? ] ! } ?</query>
+	</rule>
+</rules>

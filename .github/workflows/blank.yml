@@ -21,7 +21,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    # - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
    
     - uses: actions/setup-java@v1
       with:
@@ -65,6 +65,19 @@ jobs:
         args: unzip -qq download/TaintBench.zip -d TaintBench
 
     - run: ls TaintBench
+
+    - name: Download TaintBench Baseline Findings
+      uses: Legion2/download-release-action@v2.1.0
+      with:
+        repository: TaintBench/TaintBench
+        tag: 'TaintBenchSuite'
+        path: download
+        file: findings.zip
+
+    - name: Unzip
+      uses: TonyBogdanov/zip@1.0
+      with:
+        args: unzip -qq download/findings.zip -d 
 
 ######################################################################
 #                 Download TaintBench Framework Tools 
@@ -182,6 +195,8 @@ jobs:
     - run: ls platforms
 
     - run: ls TaintBench
+
+    - run: ls findings
     
     - run: ls TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
 
@@ -196,6 +211,20 @@ jobs:
     - run: ls AnalysisTools/FlowDroid_2.7.1_Release
 
     - run: ls -R .
+
+######################################################################
+#                 Run FlowDroid April 2017
+######################################################################
+    - name: Prepare
+      run: |
+          sudo cp taintbench_brew_configs/fdold/aqlRunSS.sh AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh
+          sudo chmod +x AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh
+          ls -l AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh
+          sudo cp taintbench_brew_configs/fdold/clear.sh AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh
+          sudo chmod +x AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh
+          ls -l AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh
+    - name: Run FlowDroid FlowDroid April 2017
+      run: sudo java -jar TBFramework/BREW-2.0.0-SNAPSHOT-EMSEBREW-2.0.0-SNAPSHOT.jar -data TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/fdold/config.xml -rules taintbench_configs/fdold/TaintBench/rules_3.xml -r -nogui -t 20m 
 
 
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<config>
+	<androidPlatforms>platforms</androidPlatforms>
+	<maxMemory>105</maxMemory>
+	<tools>
+		<tool name="FlowDroid" version="1" external="false">
+			<priority>1</priority>
+			<execute>
+				<run>AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh %MEMORY% %APP_APK% %ANDROID_PLATFORMS% results/%APP_APK_FILENAME%_result.txt %SourcesAndSinks%</run>
+				<result>AnalysisTools/FlowDroid_April_2017_Nightly/results/%APP_APK_FILENAME%_result.txt</result>
+				<instances>0</instances>
+				<memoryPerInstance>6</memoryPerInstance>
+			</execute>
+			<path>AnalysisTools/FlowDroid_April_2017_Nightly/</path>
+			<runOnEntry>AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh</runOnEntry>
+			<runOnExit>TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/flushMemory.sh</runOnExit>
+			<runOnAbort>TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/killpid.sh %PID%</runOnAbort>
+			<questions>IntraAppFlows</questions>
+		</tool>
+		<tool name="TBSaSMapper" version="1">
+			<priority>1</priority>
+			<execute>
+				<run>java -Xmx%MEMORY%g -jar TBSaSMapper-1.0-SNAPSHOT.jar %APP_APK% -o results -tb %TAINTBENCH_DIR% -id %TAINTBENCH_ID%</run>
+				<result>TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE/results/%APP_APK_FILENAME%.xml</result>
+				<instances>0</instances>
+				<memoryPerInstance>4</memoryPerInstance>
+			</execute>
+			<path>TBFramework/TBSaSMapper</path>
+			<questions>Sources, Sinks</questions>
+		</tool>
+	</tools>
+	<operators>
+		<tool name="TBSaSMapper" version="1">
+			<priority>1</priority>
+			<execute>
+				<run>java -Xmx%MEMORY%g -jar TBSaSMapper-1.0-SNAPSHOT.jar -c fd %ANSWERS% -o results -tb %TAINTBENCH_DIR%</run>
+				<result>TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE/results/SourcesAndSinks_fd_%ANSWERSHASH%.txt</result>
+				<instances>0</instances>
+				<memoryPerInstance>4</memoryPerInstance>
+			</execute>
+			<path>TBSaSMapper</path>
+			<questions>TOTS(1)</questions>
+		</tool>
+	</operators>
+</config>
