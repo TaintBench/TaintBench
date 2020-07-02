@@ -43,19 +43,13 @@ jobs:
     - name: Unzip
       uses: TonyBogdanov/zip@1.0
       with:
-        args: unzip -qq platforms/platforms.zip -d platforms/platforms
+        args: unzip -qq platforms/platforms.zip -d platforms
 
     - run: ls platforms
 
 ######################################################################
 #                 Download TaintBench Suite
 ######################################################################
-
-    - name: Remove TaintBench.zip and Print APKs in Downloaded TaintBench
-      run: |
-         sudo rm TaintBench/TaintBench.zip 
-         ls TaintBench/TaintBench
-
     - name: Download TaintBench Suite
       uses: Legion2/download-release-action@v2.1.0
       with:
@@ -139,14 +133,18 @@ jobs:
           sudo rm AnalysisTools/FlowDroid_2.7.1_Release.zip
           ls AnalysisTools
 
-    - name: Print Amandroid_3.1.2_Release
-      run: ls AnalysisTools/Amandroid_3.1.2_Release
+    - run: ls AnalysisTools/Amandroid_3.1.2_Release
 
-    - name: Print Amandroid_3.2.0_Release
-      run: ls AnalysisTools/Amandroid_3.2.0_Release
+    - run: ls AnalysisTools/Amandroid_3.2.0_Release
     
-    - name: Print FlowDroid_April_2017_Nightly
-      run: ls AnalysisTools/FlowDroid_April_2017_Nightly
-    
-    - name: Print FlowDroid_2.7.1_Release
-      run: ls AnalysisTools/FlowDroid_2.7.1_Release
+    - run: ls AnalysisTools/FlowDroid_April_2017_Nightly
+
+    - run: ls AnalysisTools/FlowDroid_2.7.1_Release
+
+    - run: ls platforms
+
+    - run: ls TaintBench
+
+    - run: ls 
+
+
