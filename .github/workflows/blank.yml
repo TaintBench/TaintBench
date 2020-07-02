@@ -43,7 +43,7 @@ jobs:
     - name: Unzip
       uses: TonyBogdanov/zip@1.0
       with:
-        args: unzip -qq download/platforms.zip -d platforms
+        args: unzip -qq download/platforms.zip -d .
 
     - run: ls platforms
 
@@ -84,7 +84,9 @@ jobs:
     - name: Unzip
       uses: TonyBogdanov/zip@1.0
       with:
-        args: unzip -qq AnalysisTools/Amandroid_3.1.2_Release.zip -d AnalysisTools/Amandroid_3.1.2_Release
+        args: unzip -qq AnalysisTools/Amandroid_3.1.2_Release.zip -d AnalysisTools
+
+######################################################################
 
     - name: Download Amandroid 3.2.2
       uses: Legion2/download-release-action@v2.1.0
@@ -97,7 +99,9 @@ jobs:
     - name: Unzip
       uses: TonyBogdanov/zip@1.0
       with:
-        args: unzip -qq AnalysisTools/Amandroid_3.2.0_Release.zip -d AnalysisTools/Amandroid_3.2.0_Release
+        args: unzip -qq AnalysisTools/Amandroid_3.2.0_Release.zip -d AnalysisTools
+
+######################################################################
 
     - name: Download FlowDroid April 2017
       uses: Legion2/download-release-action@v2.1.0
@@ -110,7 +114,9 @@ jobs:
     - name: Unzip
       uses: TonyBogdanov/zip@1.0
       with:
-        args: unzip -qq AnalysisTools/FlowDroid_April_2017_Nightly.zip -d AnalysisTools/FlowDroid_April_2017_Nightly
+        args: unzip -qq AnalysisTools/FlowDroid_April_2017_Nightly.zip -d AnalysisTools
+
+######################################################################
 
     - name: Download FlowDroid 2.7.1
       uses: Legion2/download-release-action@v2.1.0
@@ -123,9 +129,10 @@ jobs:
     - name: Unzip
       uses: TonyBogdanov/zip@1.0
       with:
-        args: unzip -qq AnalysisTools/FlowDroid_2.7.1_Release.zip -d AnalysisTools/FlowDroid_2.7.1_Release
-
-    - name: Remove .Zip files and Print Downloaded Analysis Tools
+        args: unzip -qq AnalysisTools/FlowDroid_2.7.1_Release.zip -d AnalysisTools
+        
+######################################################################
+    - name: Remove .Zip files
       run: |
           sudo rm AnalysisTools/Amandroid_3.1.2_Release.zip
           sudo rm AnalysisTools/Amandroid_3.2.0_Release.zip 
