@@ -20,19 +20,19 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     
-    - name: Print informatio
+    - name: Print information
       run: ls
     
-    - name: Download CLI
+    - name: Download Amandroid
       uses: Legion2/download-release-action@v2.1.0
       with:
         repository: TaintBench/TaintBench
         tag: 'TaintAnalysisTools'
-        path: downloads
+        path: Amandroid_3.1.2
         file: Amandroid_3.1.2_Release.zip
   
-    - name: Print informatio
-      run: ls
+    - name: Print information
+      run: ls, ls Amandroid_3.1.2 
       
     # Runs a single command using the runners shell
     - name: Run a one-line script
