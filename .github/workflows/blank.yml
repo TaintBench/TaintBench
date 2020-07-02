@@ -84,23 +84,24 @@ jobs:
 
     - name: Remove .Zip files and Print Downloaded Analysis Tools
       run: |
-          sudo rm AnalysisTools/Amandroid_3.1.2_Release.zip
-          sudo rm AnalysisTools/Amandroid_3.2.0_Release.zip 
-          sudo rm AnalysisTools/FlowDroid_April_2017_Nightly.zip 
-          sudo rm AnalysisTools/FlowDroid_2.7.1_Release.zip
+          rm AnalysisTools/Amandroid_3.1.2_Release.zip
+          rm AnalysisTools/Amandroid_3.2.0_Release.zip 
+          rm AnalysisTools/FlowDroid_April_2017_Nightly.zip 
+          rm AnalysisTools/FlowDroid_2.7.1_Release.zip
           ls AnalysisTools
 
-    - name: Print Each Analysis Tool 
-      run: |
-          echo Amandroid_3.1.2_Release
-          ls AnalysisTools/Amandroid_3.1.2_Release
-          echo Amandroid_3.2.0_Release
-          ls AnalysisTools/Amandroid_3.2.0_Release
-          echo FlowDroid_April_2017_Nightly
-          ls AnalysisTools/FlowDroid_April_2017_Nightly
-          echo FlowDroid_2.7.1_Release
-          ls AnalysisTools/FlowDroid_2.7.1_Release
+    - name: Print Amandroid_3.1.2_Release
+      run: ls AnalysisTools/Amandroid_3.1.2_Release
+
+    - name: Print Amandroid_3.2.0_Release
+      run: ls AnalysisTools/Amandroid_3.2.0_Release
     
+    - name: Print FlowDroid_April_2017_Nightly
+      run: ls AnalysisTools/FlowDroid_April_2017_Nightly
+    
+    - name: Print FlowDroid_2.7.1_Release
+      run: ls AnalysisTools/FlowDroid_2.7.1_Release
+       
     - name: Download TaintBench Suite
       uses: Legion2/download-release-action@v2.1.0
       with:
@@ -116,5 +117,5 @@ jobs:
 
     - name: Remove TaintBench.zip and Print APKs in Downloaded TaintBench
       run: |
-         sudo rm TaintBench/TaintBench.zip 
+         rm TaintBench/TaintBench.zip 
          ls TaintBench/TaintBench
