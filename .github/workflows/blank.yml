@@ -224,10 +224,11 @@ jobs:
           sudo chmod +x AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh
           ls -l AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh
           sudo cp -R taintbench_brew_configs TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/taintbench_brew_configs
-    - name: Run FlowDroid FlowDroid April 2017
+    - name: Run FlowDroid April 2017
       run: |
           cd TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
           ls .
+          echo Run FlowDroid April 2017
           java -version 
           java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/fdold/config.xml -rules taintbench_brew_configs/fdold/TaintBench/rules_3.xml -r -nogui -t 20m 
 
