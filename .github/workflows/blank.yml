@@ -117,7 +117,7 @@ jobs:
 
     - name: Remove platforms.zip and Print platforms directory
       run: |
-         sudo rm TaintBench/platforms/platforms.zip 
+         sudo rm platforms/platforms.zip 
          ls TaintBench/platforms
 
     - name: Remove TaintBench.zip and Print APKs in Downloaded TaintBench
@@ -136,9 +136,9 @@ jobs:
     - name: Unzip
       uses: TonyBogdanov/zip@1.0
       with:
-        args: unzip -qq ./TaintBench/TaintBench.zip -d ./TaintBench/TaintBench
+        args: unzip -qq ./TaintBench/TaintBench.zip -d ./TaintBench
 
     - name: Remove TaintBench.zip and Print APKs in Downloaded TaintBench
       run: |
          sudo rm TaintBench/TaintBench.zip 
-         ls TaintBench/TaintBench
+         ls TaintBench
