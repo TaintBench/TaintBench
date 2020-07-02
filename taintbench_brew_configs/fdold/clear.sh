@@ -1,3 +1,5 @@
 #!/bin/bash
-
-rm results/*
+echo clear.sh
+if [ -d "results" ]; then
+    rm results/*
+fi
