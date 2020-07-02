@@ -37,13 +37,13 @@ jobs:
       with:
         repository: TaintBench/TaintBench
         tag: 'AndroidPlatforms'
-        path: platforms
+        path: download
         file: platforms.zip 
     
     - name: Unzip
       uses: TonyBogdanov/zip@1.0
       with:
-        args: unzip -qq platforms/platforms.zip -d platforms
+        args: unzip -qq download/platforms.zip -d platforms
 
     - run: ls platforms
 
@@ -55,13 +55,13 @@ jobs:
       with:
         repository: TaintBench/TaintBench
         tag: 'TaintBenchSuite'
-        path: TaintBench
+        path: download
         file: TaintBench.zip
 
     - name: Unzip
       uses: TonyBogdanov/zip@1.0
       with:
-        args: unzip -qq TaintBench/TaintBench.zip -d TaintBench
+        args: unzip -qq download/TaintBench.zip -d TaintBench
 
     - run: ls TaintBench
 
