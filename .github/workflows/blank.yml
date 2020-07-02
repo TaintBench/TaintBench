@@ -77,7 +77,7 @@ jobs:
     - name: Unzip
       uses: TonyBogdanov/zip@1.0
       with:
-        args: unzip -qq download/findings.zip -d 
+        args: unzip -qq download/findings.zip -d .
 
 ######################################################################
 #                 Download TaintBench Framework Tools 
