@@ -6,7 +6,7 @@
 		<tool name="FlowDroid" version="1" external="false">
 			<priority>1</priority>
 			<execute>
-				<run>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh %MEMORY% %APP_APK% %ANDROID_PLATFORMS% results/%APP_APK_FILENAME%_result.txt %SourcesAndSinks%</run>
+				<run>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh %MEMORY% %APP_APK% %ANDROID_PLATFORMS% /home/runner/work/TaintBench/TaintBench/TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE/results/%APP_APK_FILENAME%_result.txt %SourcesAndSinks%</run>
 				<result>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/results/%APP_APK_FILENAME%_result.txt</result>
 				<instances>0</instances>
 				<memoryPerInstance>6</memoryPerInstance>
