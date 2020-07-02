@@ -20,7 +20,7 @@
 		<tool name="TBSaSMapper" version="1">
 			<priority>1</priority>
 			<execute>
-				<run>java -Xmx%MEMORY%g -jar TBSaSMapper-1.0-SNAPSHOT.jar %APP_APK% -o TBSaSMapper-1.0-SNAPSHOT-EMSE/results -tb %TAINTBENCH_DIR% -id %TAINTBENCH_ID%</run>
+				<run>java -Xmx%MEMORY%g -jar TBSaSMapper-1.0-SNAPSHOT.jar %APP_APK% -o /home/runner/work/TaintBench/TaintBench/TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE/results -tb %TAINTBENCH_DIR% -id %TAINTBENCH_ID%</run>
 				<result>/home/runner/work/TaintBench/TaintBench/TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE/results/%APP_APK_FILENAME%.xml</result>
 				<instances>0</instances>
 				<memoryPerInstance>4</memoryPerInstance>
@@ -33,7 +33,7 @@
 		<tool name="TBSaSMapper" version="1">
 			<priority>1</priority>
 			<execute>
-				<run>java -Xmx%MEMORY%g -jar TBSaSMapper-1.0-SNAPSHOT.jar -c fd %ANSWERS% -o TBSaSMapper-1.0-SNAPSHOT-EMSE/results -tb %TAINTBENCH_DIR%</run>
+				<run>java -Xmx%MEMORY%g -jar TBSaSMapper-1.0-SNAPSHOT.jar -c fd %ANSWERS% -o /home/runner/work/TaintBench/TaintBench/TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE/results -tb %TAINTBENCH_DIR%</run>
 				<result>/home/runner/work/TaintBench/TaintBench/TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE/results/SourcesAndSinks_fd_%ANSWERSHASH%.txt</result>
 				<instances>0</instances>
 				<memoryPerInstance>4</memoryPerInstance>
