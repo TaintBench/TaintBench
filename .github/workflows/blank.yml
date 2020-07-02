@@ -82,9 +82,25 @@ jobs:
       with:
         args: unzip -qq ./AnalysisTools/FlowDroid_2.7.1_Release.zip -d ./AnalysisTools/FlowDroid_2.7.1_Release
 
-    - name: Print Downloaded Analysis Tools
-      run: ls AnalysisTools
-         
+    - name: Remove .Zip files and Print Downloaded Analysis Tools
+      run: |
+          rm AnalysisTools/Amandroid_3.1.2_Release.zip
+          rm AnalysisTools/Amandroid_3.2.0_Release.zip 
+          rm AnalysisTools/FlowDroid_April_2017_Nightly.zip 
+          rm AnalysisTools/FlowDroid_2.7.1_Release.zip
+          ls AnalysisTools
+
+    - name: Print Each Analysis Tool 
+      run: |
+          echo Amandroid_3.1.2_Release
+          ls AnalysisTools/Amandroid_3.1.2_Release
+          echo Amandroid_3.2.0_Release
+          ls AnalysisTools/Amandroid_3.2.0_Release
+          echo FlowDroid_April_2017_Nightly
+          ls AnalysisTools/FlowDroid_April_2017_Nightly
+          echo FlowDroid_2.7.1_Release
+          ls AnalysisTools/FlowDroid_2.7.1_Release
+    
     - name: Download TaintBench Suite
       uses: Legion2/download-release-action@v2.1.0
       with:
@@ -98,6 +114,7 @@ jobs:
       with:
         args: unzip -qq ./TaintBench/TaintBench.zip -d ./TaintBench/TaintBench
 
-    - name: Print Downloaded TaintBench
+    - name: Remove TaintBench.zip and Print APKs in Downloaded TaintBench
       run: |
-         ls TaintBench
+         rm TaintBench/TaintBench.zip 
+         ls TaintBench/TaintBench
