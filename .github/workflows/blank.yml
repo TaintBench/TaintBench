@@ -187,6 +187,8 @@ jobs:
 
     - run: ls TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
 
+    - run: ls -R AnalysisTools
+
     - run: ls AnalysisTools/Amandroid_3.1.2_Release
 
     - run: ls AnalysisTools/Amandroid_3.2.0_Release
