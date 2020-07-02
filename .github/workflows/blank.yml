@@ -60,10 +60,21 @@ jobs:
         repository: TaintBench/TaintBench
         tag: 'TaintAnalysisTools'
         path: AnalysisTools
-        file: FlowDroid_2.7.1_Release.zip
-      
+        file: FlowDroid_2.7.1_Release.zip 
+        
     - name: Print Downloaded Analysis Tools
       run: ls AnalysisTools
+         
+    - name: Download TaintBench Suite
+      uses: Legion2/download-release-action@v2.1.0
+      with:
+        repository: TaintBench/TaintBench
+        tag: 'TaintBenchSuite'
+        path: TaintBench
+        file: TaintBench.zip
+
+    - name: Print DowNloaded TaintBench
+      run: ls TaintBench
                       
     # Runs a single command using the runners shell
     - name: Run a one-line script
