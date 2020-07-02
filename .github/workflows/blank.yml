@@ -240,10 +240,15 @@ jobs:
     - name: Run FlowDroid April 2017
       run: |
           sudo chmod -R 777 AnalysisTools/FlowDroid_April_2017_Nightly
+          mkdir AnalysisTools/FlowDroid_April_2017_Nightly/results
+          sudo chmod -R 777 nalysisTools/FlowDroid_April_2017_Nightly
+          
           sudo chmod -R 777 TBFramework/BREW-2.0.0-SNAPSHOT-EMSE 
+          
           sudo chmod -R 777 TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
           mkdir TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE/results
           sudo chmod -R 777 TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
+          
           cd TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
           ls .
           echo Run FlowDroid April 2017
