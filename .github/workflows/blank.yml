@@ -216,23 +216,32 @@ jobs:
 ######################################################################
     - name: Prepare
       run: |
+          sudo chmod +x TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/flushMemory.sh
+          sudo chmod +x TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/killpid.sh
+
           sudo cp taintbench_brew_configs/fdold/aqlRunSS.sh AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh
           sudo chmod +x AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh
           ls -l AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh
+
           sudo cp taintbench_brew_configs/fdold/clear.sh AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh
           sudo chmod +x AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh
           ls -l AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh
+
           echo remove TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/config.properties
           sudo rm TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/config.properties
           ls TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
+
           echo copy taintbench_brew_configs/config.properties to TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/config.properties
           sudo mv taintbench_brew_configs/config.properties TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/config.properties
           ls TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
+
           cat TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/config.properties
+
           sudo mv taintbench_brew_configs TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/taintbench_brew_configs
 
     - name: Run FlowDroid April 2017
       run: |
+          sudo chmod -R 777 AnalysisTools/FlowDroid_April_2017_Nightly
           sudo chmod -R 777 TBFramework/BREW-2.0.0-SNAPSHOT-EMSE 
           sudo chmod -R 777 TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
           mkdir TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE/results
