@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Print informatio
-      run: pwd, ls
+      run: ls
     
     - name: Download CLI
       uses: Legion2/download-release-action@v2.1.0
@@ -32,7 +32,7 @@ jobs:
         file: Amandroid_3.1.2_Release.zip
   
     - name: Print informatio
-      run: pwd, ls
+      run: ls
       
     # Runs a single command using the runners shell
     - name: Run a one-line script
