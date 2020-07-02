@@ -26,9 +26,57 @@ jobs:
     - uses: actions/setup-java@v1
       with:
         java-version: '8.0.232' # The JDK version to make available on the path.
-        java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
+        java-package: jdk+fx # (jre, jdk, or jdk+fx) - defaults to jdk
         architecture: x64 # (x64 or x86) - defaults to x64
     - run: java -version  
+######################################################################
+#                 Download TaintBench Framework Tools 
+######################################################################
+#########################################
+#        BREW 
+#########################################
+    - name: Download BREW
+      uses: Legion2/download-release-action@v2.1.0
+      with:
+        repository: TaintBench/TaintBench
+        tag: 'TBFramework'
+        path: download
+        file: BREW-2.0.0-SNAPSHOT-EMSE.zip
+
+    - name: Unzip
+      uses: TonyBogdanov/zip@1.0
+      with:
+        args: unzip -qq download/BREW-2.0.0-SNAPSHOT-EMSE.zip -d TBFramework
+
+    - run: ls TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
+
+#########################################
+#      TBMapper
+#########################################
+    - name: Download TBMapper
+      uses: Legion2/download-release-action@v2.1.0
+      with:
+        repository: TaintBench/TaintBench
+        tag: 'TBFramework'
+        path: download
+        file: TBSaSMapper-1.0-SNAPSHOT-EMSE.zip
+
+    - name: Unzip
+      uses: TonyBogdanov/zip@1.0
+      with:
+        args: unzip -qq download/TBSaSMapper-1.0-SNAPSHOT-EMSE.zip -d TBFramework
+
+    - run: ls TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
+#########################################
+#      TEST BREW
+#########################################
+    - name: Test BREW
+      run: |
+          cd TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
+          ls .
+          java -version 
+          java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/fdold/config.xml -rules taintbench_brew_configs/fdold/TaintBench/rules_3.xml -r -nogui -t 20m 
+
 
 ######################################################################
 #                 Download Android Platforms  
@@ -78,45 +126,6 @@ jobs:
       uses: TonyBogdanov/zip@1.0
       with:
         args: unzip -qq download/findings.zip -d .
-
-######################################################################
-#                 Download TaintBench Framework Tools 
-######################################################################
-#########################################
-#        BREW 
-#########################################
-    - name: Download BREW
-      uses: Legion2/download-release-action@v2.1.0
-      with:
-        repository: TaintBench/TaintBench
-        tag: 'TBFramework'
-        path: download
-        file: BREW-2.0.0-SNAPSHOT-EMSE.zip
-
-    - name: Unzip
-      uses: TonyBogdanov/zip@1.0
-      with:
-        args: unzip -qq download/BREW-2.0.0-SNAPSHOT-EMSE.zip -d TBFramework
-
-    - run: ls TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
-
-#########################################
-#      TBMapper
-#########################################
-    - name: Download TBMapper
-      uses: Legion2/download-release-action@v2.1.0
-      with:
-        repository: TaintBench/TaintBench
-        tag: 'TBFramework'
-        path: download
-        file: TBSaSMapper-1.0-SNAPSHOT-EMSE.zip
-
-    - name: Unzip
-      uses: TonyBogdanov/zip@1.0
-      with:
-        args: unzip -qq download/TBSaSMapper-1.0-SNAPSHOT-EMSE.zip -d TBFramework
-
-    - run: ls TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
 
 ######################################################################
 #                 Download Analysis Tools 
