@@ -38,7 +38,7 @@
 				<instances>0</instances>
 				<memoryPerInstance>4</memoryPerInstance>
 			</execute>
-			<path>TBSaSMapper</path>
+			<path>/home/runner/work/TaintBench/TaintBench/TBFramework/TBSaSMapper</path>
 			<questions>TOTS(1)</questions>
 		</tool>
 	</operators>
