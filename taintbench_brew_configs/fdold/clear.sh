@@ -1,5 +1,5 @@
 #!/bin/bash
-echo clear.sh
+echo Running clear.sh
 if [ -d "results" ]; then
-    rm results/*
+    sudo rm results/*
 fi
