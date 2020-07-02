@@ -25,7 +25,7 @@ jobs:
    
     - uses: actions/setup-java@v1
       with:
-        java-version: '8' # The JDK version to make available on the path.
+        java-version: '8.0.232' # The JDK version to make available on the path.
         java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
         architecture: x64 # (x64 or x86) - defaults to x64
     - run: java -version  
@@ -228,6 +228,7 @@ jobs:
       run: |
           cd TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
           ls .
+          java -version 
           sudo java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/fdold/config.xml -rules taintbench_configs/fdold/TaintBench/rules_3.xml -r -nogui -t 20m 
 
 
