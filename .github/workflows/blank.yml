@@ -67,16 +67,6 @@ jobs:
         args: unzip -qq download/TBSaSMapper-1.0-SNAPSHOT-EMSE.zip -d TBFramework
 
     - run: ls TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
-#########################################
-#      TEST BREW
-#########################################
-    - name: Test BREW
-      run: |
-          cd TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
-          ls .
-          java -version 
-          java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/fdold/config.xml -rules taintbench_brew_configs/fdold/TaintBench/rules_3.xml -r -nogui -t 20m 
-
 
 ######################################################################
 #                 Download Android Platforms  
