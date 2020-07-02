@@ -29,7 +29,7 @@ jobs:
       
     - name: Print information
       run: ls
-    
+
     - name: Download Amandroid 3.1.2
       uses: Legion2/download-release-action@v2.1.0
       with:
@@ -101,7 +101,30 @@ jobs:
     
     - name: Print FlowDroid_2.7.1_Release
       run: ls AnalysisTools/FlowDroid_2.7.1_Release
-       
+
+    - name: Download Android Platforms
+      uses: Legion2/download-release-action@v2.1.0
+      with:
+        repository: TaintBench/TaintBench
+        tag: 'AndroidPlatforms'
+        path: platforms
+        file: platforms.zip 
+    
+    - name: Unzip
+      uses: TonyBogdanov/zip@1.0
+      with:
+        args: unzip -qq ./platforms/platforms.zip -d ./platforms/platforms
+
+    - name: Remove platforms.zip and Print platforms directory
+      run: |
+         sudo rm TaintBench/platforms/platforms.zip 
+         ls TaintBench/platforms
+
+    - name: Remove TaintBench.zip and Print APKs in Downloaded TaintBench
+      run: |
+         sudo rm TaintBench/TaintBench.zip 
+         ls TaintBench/TaintBench
+
     - name: Download TaintBench Suite
       uses: Legion2/download-release-action@v2.1.0
       with:
