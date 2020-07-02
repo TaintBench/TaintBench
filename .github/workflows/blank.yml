@@ -84,10 +84,10 @@ jobs:
 
     - name: Remove .Zip files and Print Downloaded Analysis Tools
       run: |
-          rm AnalysisTools/Amandroid_3.1.2_Release.zip
-          rm AnalysisTools/Amandroid_3.2.0_Release.zip 
-          rm AnalysisTools/FlowDroid_April_2017_Nightly.zip 
-          rm AnalysisTools/FlowDroid_2.7.1_Release.zip
+          sudo rm AnalysisTools/Amandroid_3.1.2_Release.zip
+          sudo rm AnalysisTools/Amandroid_3.2.0_Release.zip 
+          sudo rm AnalysisTools/FlowDroid_April_2017_Nightly.zip 
+          sudo rm AnalysisTools/FlowDroid_2.7.1_Release.zip
           ls AnalysisTools
 
     - name: Print Each Analysis Tool 
@@ -116,5 +116,5 @@ jobs:
 
     - name: Remove TaintBench.zip and Print APKs in Downloaded TaintBench
       run: |
-         rm TaintBench/TaintBench.zip 
+         sudo rm TaintBench/TaintBench.zip 
          ls TaintBench/TaintBench
