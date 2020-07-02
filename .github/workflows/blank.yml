@@ -45,10 +45,7 @@ jobs:
       with:
         args: unzip -qq platforms/platforms.zip -d platforms/platforms
 
-    - name: Remove platforms.zip and Print platforms directory
-      run: |
-         sudo rm platforms/platforms.zip 
-         ls platforms
+    - run: ls platforms
 
 ######################################################################
 #                 Download TaintBench Suite
@@ -72,10 +69,7 @@ jobs:
       with:
         args: unzip -qq TaintBench/TaintBench.zip -d TaintBench
 
-    - name: Remove TaintBench.zip and Print APKs in Downloaded TaintBench
-      run: |
-         sudo rm TaintBench/TaintBench.zip 
-         ls TaintBench
+    - run: ls TaintBench
 
 ######################################################################
 #                 Download TaintBench Framework Tools 
