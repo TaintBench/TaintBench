@@ -29,8 +29,7 @@ jobs:
         java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
         architecture: x64 # (x64 or x86) - defaults to x64
     - run: java -version  
-    - name: Print information
-      run: ls
+
 ######################################################################
 #                 Download Android Platforms  
 ######################################################################
@@ -178,7 +177,7 @@ jobs:
           sudo rm AnalysisTools/Amandroid_3.2.0_Release.zip 
           sudo rm AnalysisTools/FlowDroid_April_2017_Nightly.zip 
           sudo rm AnalysisTools/FlowDroid_2.7.1_Release.zip
-          sudo rm download
+          sudo rm -rf download
     
     - run: ls platforms
 
