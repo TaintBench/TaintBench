@@ -25,7 +25,7 @@ jobs:
         TBMAPPER: /home/runner/work/TaintBench/TaintBench/TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
         TOOL: /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly
         VERSION: fdold
-        CONFIG: /home/runner/work/TaintBench/TaintBench/taintbench_brew_configs/$VERSION
+        CONFIG: /home/runner/work/TaintBench/TaintBench/taintbench_brew_configs/fdold
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -59,10 +59,6 @@ jobs:
 
     - run: |
           ls TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
-          echo $BREW
-          echo $TBMAPPER
-          echo $CONFIG
-          echo $TOOL 
 
 #########################################
 #      TBMapper
