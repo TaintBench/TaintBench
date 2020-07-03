@@ -195,8 +195,7 @@ jobs:
       run: |
           echo create $TOOL/savedResults folder to storing analysis resutls 
           sudo mkdir $TOOL/savedResults
-          sudo chmod +w $TOOL/savedResults
-                  
+          sudo chmod +w $TOOL/savedResults              
           
           echo create $TOOL/results folder to store intermediate result of each apk. 
           sudo mkdir $TOOL/results
@@ -206,7 +205,7 @@ jobs:
           sudo mkdir $TBMAPPER/results
           sudo chmod +w $TBMAPPER/results
           
-          ls -l -R . 
+          sudo chmod +w $BREW/data
           
           echo cd to directory of $BREW to execute it 
           cd $BREW
