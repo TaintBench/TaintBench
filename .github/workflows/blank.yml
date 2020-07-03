@@ -29,6 +29,11 @@ jobs:
         java-package: jdk+fx # (jre, jdk, or jdk+fx) - defaults to jdk
         architecture: x64 # (x64 or x86) - defaults to x64
     - run: java -version  
+
+    - name: Zip Test
+      uses: TonyBogdanov/zip@1.0
+      with:
+        args: zip -qq -r ./test.zip /home/runner/work/TaintBench/TaintBench/taintbench_brew_configs
 ######################################################################
 #                 Download TaintBench Framework Tools 
 ######################################################################
