@@ -194,18 +194,17 @@ jobs:
     - name: Run FlowDroid April 2017
       run: |
           echo create $TOOL/savedResults folder to storing analysis resutls 
-          sudo mkdir $TOOL/savedResults
-          sudo chmod +w $TOOL/savedResults              
+          sudo mkdir $TOOL/savedResults             
           
           echo create $TOOL/results folder to store intermediate result of each apk. 
           sudo mkdir $TOOL/results
-          sudo chmod +w $TOOL/results
           
           echo create $TBMAPPER/results folder to store list of sources and sinks for each apk 
           sudo mkdir $TBMAPPER/results
-          sudo chmod +w $TBMAPPER/results
           
-          sudo chmod -R 777 $BREW/data
+          echo make sure folder TBFramework and AnalysisTools have all permissions
+          sudo chmod -R 777 TBFramework
+          sudo chmod -R 777 AnalysisTools
           
           echo cd to directory of $BREW to execute it 
           cd $BREW
