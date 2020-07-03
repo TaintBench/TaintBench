@@ -12,7 +12,7 @@
 				<memoryPerInstance>4</memoryPerInstance>
 			</execute>
 			<path>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release</path>
-			<runOnEntry>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release/clear.sh<clear.sh</runOnEntry>
+			<runOnEntry>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release/clear.sh</runOnEntry>
 	        <runOnExit>/home/runner/work/TaintBench/TaintBench/TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/flushMemory.sh</runOnExit>
 			<runOnAbort>/home/runner/work/TaintBench/TaintBench/TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/killpid.sh %PID%</runOnAbort>
 			<questions>IntraAppFlows</questions>
