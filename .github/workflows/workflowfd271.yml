@@ -3,8 +3,8 @@ name: Evaluate FlowDroid 2.7.1
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  push:
-    branches: [ master ]
+  #push:
+  #  branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -170,8 +170,9 @@ jobs:
     - name: Prepare
       run: |
           echo make sure the scripts are executable
+          sudo cp taintbench_brew_configs/flushMemory.sh $BREW/flushMemory.sh
           sudo chmod +x $BREW/flushMemory.sh
-          sudo chmod +x $BREW/killpid.sh  
+          sudo chmod +x $BREW/killpid.sh
          
           echo copy the script clear.sh to clear previous analysis results and make sure it is executable 
           sudo cp $CONFIG/clear.sh $TOOL/clear.sh
@@ -188,7 +189,7 @@ jobs:
 
     - name: Run FlowDroid 2.7.1
       run: |
-          echo create $TOOL/savedResults folder to storing analysis resutls 
+          echo create $TOOL/savedResults folder to storing analysis results 
           sudo mkdir $TOOL/savedResults             
           
           echo create $TOOL/results folder to store intermediate result of each apk. 
@@ -204,7 +205,8 @@ jobs:
           echo cd to directory of $BREW to execute it 
           cd $BREW
           java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/$VERSION/config.xml -rules taintbench_brew_configs/$VERSION/TaintBench/rules_3.xml -r -nogui -t 20m
-          sudo mv data/data_taintbench_16_06_20.zip data/data_taintbench.zip
+          sudo mkdir upload
+          sudo mv data/data_taintbench_16_06_20.zip upload/data_taintbench.zip
 
     - name: Print Saved Results of FlowDroid 2.7.1
       run: |
@@ -213,10 +215,10 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-       name: BREW Benchmark Result File FlowDroid 2.7.1
-       path: TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/data/data_taintbench.zip
+       name: BREW-Benchmark-Result-File-FlowDroid-2.7.1
+       path: TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/upload
     
     - uses: actions/upload-artifact@v2
       with:
-       name: Raw Results of FlowDroid 2.7.1
+       name: Raw-Results-of-FlowDroid-2.7.1
        path: AnalysisTools/FlowDroid_2.7.1_Release/savedResults

@@ -8,7 +8,6 @@ fi
 
 # Clear Amandroid Results 
 if [ -d "outputPath" ]; then 
-    sudo cp -a outputPath/. savedResults
     sudo rm -Rf outputPath
 fi
 

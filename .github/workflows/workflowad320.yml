@@ -148,6 +148,7 @@ jobs:
     - name: Prepare
       run: |
           echo make sure the scripts are executable
+          sudo cp taintbench_brew_configs/flushMemory.sh $BREW/flushMemory.sh
           sudo chmod +x $BREW/flushMemory.sh
           sudo chmod +x $BREW/killpid.sh  
          
@@ -166,7 +167,7 @@ jobs:
 
     - name: Run Amandroid 3.2.0
       run: |
-          echo create $TOOL/savedResults folder to storing analysis resutls 
+          echo create $TOOL/savedResults folder to storing analysis results 
           sudo mkdir $TOOL/savedResults             
           
           echo create $TOOL/outputPath folder to store intermediate result of each apk. 
@@ -185,7 +186,8 @@ jobs:
           echo cd to directory of $BREW to execute it 
           cd $BREW
           java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/$VERSION/config.xml -rules taintbench_brew_configs/$VERSION/TaintBench/rules_3.xml -r -nogui -t 20m
-          sudo mv data/data_taintbench_16_06_20.zip data/data_taintbench.zip
+          sudo mkdir upload
+          sudo mv data/data_taintbench_16_06_20.zip upload/data_taintbench.zip
 
     - name: Print Saved Results of Amandroid 3.2.0
       run: |
@@ -194,10 +196,10 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-       name: BREW Benchmark Result File Amandroid 3.2.0
-       path: TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/data/data_taintbench.zip
+       name: BREW-Benchmark-Result-File-Amandroid-3.2.0
+       path: TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/upload
 
     - uses: actions/upload-artifact@v2
       with:
-       name: Raw Results of Amandroid 3.2.0
+       name: Raw-Results-of-Amandroid-3.2.0
        path: AnalysisTools/Amandroid_3.2.0_Release/savedResults
