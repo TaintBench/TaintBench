@@ -57,7 +57,12 @@ jobs:
       with:
         args: unzip -qq download/BREW-2.0.0-SNAPSHOT-EMSE.zip -d TBFramework
 
-    - run: ls TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
+    - run: |
+          ls TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
+          echo $BREW
+          ccho $TBMAPPER
+          echo $CONFIG
+          echo $TOOL 
 
 #########################################
 #      TBMapper
@@ -172,7 +177,7 @@ jobs:
       run: |
           echo make sure the scripts are executable
           sudo chmod +x $BREW/flushMemory.sh
-          sudo chmod +  $BREW/killpid.sh
+          sudo chmod +x $BREW/killpid.sh
 
           echo copy the script aqlRunSS.sh to run FlowDroid and make sure it is executable 
           sudo cp $CONFIG/aqlRunSS.sh $TOOL/aqlRunSS.sh
