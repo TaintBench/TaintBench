@@ -208,7 +208,7 @@ jobs:
           echo cd to directory of $BREW to execute it 
           cd $BREW
           java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/$VERSION/config.xml -rules taintbench_brew_configs/$VERSION/TaintBench/rules_3.xml -r -nogui -t 20m
-          sudo mv data/data_taintbench_16_06_20.zip data/data_taintbench_$VERSION.zip
+          sudo mv data/data_taintbench_16_06_20.zip data/data_taintbench.zip
 
     - name: Print Saved Results of FlowDroid April 2017 NightlyNightly
       run: |
@@ -218,12 +218,12 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
        name: BREW Benchmark Result File FlowDroid April 2017 Nightly
-       path: $BREW/data/data_taintbench_$VERSION.zip
+       path: TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/data/data_taintbench.zip
 
     - uses: actions/upload-artifact@v2
       with:
        name: Raw Results of FlowDroid April 2017 Nightly
-       path: $TOOL/savedResults
+       path: AnalysisTools/FlowDroid_April_2017_Nightly/savedResults
 #################################################################################################################################
 #                                             Evaluate FlowDroid 2.7.1
 #################################################################################################################################
@@ -417,7 +417,7 @@ jobs:
           echo cd to directory of $BREW to execute it 
           cd $BREW
           java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/$VERSION/config.xml -rules taintbench_brew_configs/$VERSION/TaintBench/rules_3.xml -r -nogui -t 20m
-          sudo mv data/data_taintbench_16_06_20.zip data/data_taintbench_$VERSION.zip
+          sudo mv data/data_taintbench_16_06_20.zip data/data_taintbench.zip
 
     - name: Print Saved Results of FlowDroid 2.7.1
       run: |
@@ -427,12 +427,12 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
        name: BREW Benchmark Result File FlowDroid 2.7.1
-       path: $BREW/data/data_taintbench_$VERSION.zip
-
+       path: TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/data/data_taintbench.zip
+    
     - uses: actions/upload-artifact@v2
       with:
        name: Raw Results of FlowDroid 2.7.1
-       path: $TOOL/savedResults
+       path: AnalysisTools/FlowDroid_2.7.1_Release/savedResults
 
 #################################################################################################################################
 #                                             Evaluate Amandroid 3.1.2
@@ -607,7 +607,7 @@ jobs:
           echo cd to directory of $BREW to execute it 
           cd $BREW
           java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/$VERSION/config.xml -rules taintbench_brew_configs/$VERSION/TaintBench/rules_3.xml -r -nogui -t 20m
-          sudo mv data/data_taintbench_16_06_20.zip data/data_taintbench_$VERSION.zip
+          sudo mv data/data_taintbench_16_06_20.zip data/data_taintbench.zip
 
     - name: Print Saved Results of Amandroid 3.1.2
       run: |
@@ -617,9 +617,9 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
        name: BREW Benchmark Result File Amandroid 3.1.2
-       path: $BREW/data/data_taintbench_$VERSION.zip
+       path: TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/data/data_taintbench.zip
 
     - uses: actions/upload-artifact@v2
       with:
        name: Raw Results of Amandroid 3.1.2
-       path: $TOOL/savedResults
+       path: AnalysisTools/Amandroid_3.1.2_Release/savedResults
