@@ -1,8 +1,8 @@
 name: Evaluate FlowDroid April 2017 Nightly
 
 on:
-  #push:
-  #  branches: [ master ]
+  push:
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
