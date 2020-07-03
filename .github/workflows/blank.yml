@@ -238,7 +238,7 @@ jobs:
       TBMAPPER: /home/runner/work/TaintBench/TaintBench/TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
       TOOL: /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release
       VERSION: fd271
-      CONFIG: /home/runner/work/TaintBench/TaintBench/taintbench_brew_configs/$VERSION
+      CONFIG: /home/runner/work/TaintBench/TaintBench/taintbench_brew_configs/fd271
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
