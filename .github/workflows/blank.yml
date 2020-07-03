@@ -203,9 +203,12 @@ jobs:
           sudo mkdir $TBMAPPER/results
           
           echo make sure the folders of $TOOL and $BREW and $TBMAPPER can be read, written and executed.
-          sudo chmod -R 777 "${TOOL}"
-          sudo chmod -R 777 "${BREW}"
-          sudo chmod -R 777 "${TBMAPPPER}"
+          sudo chmod -R +x $TOOL
+          sudo chmod -R +x $BREW
+          sudo chmod -R +x $TBMAPPPER
+          sudo chmod -R +w $TOOL
+          sudo chmod -R +w $BREW
+          sudo chmod -R +w $TBMAPPPER
           
           echo cd to directory of $BREW to execute it 
           cd $BREW
