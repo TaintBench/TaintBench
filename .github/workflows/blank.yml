@@ -255,13 +255,9 @@ jobs:
           java -version 
           java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/fdold/config.xml -rules taintbench_brew_configs/fdold/TaintBench/rules_3.xml -r -nogui -t 20m 
 
-  
-    - name: Zip Results of FlowDroid April 2017
-      uses: TonyBogdanov/zip@1.0
-      with:
-        args: zip -qq -r ./fdold_results.zip . -i /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/results/
-
+    - run: ls /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/results
+    
     - uses: actions/upload-artifact@v2
       with:
        name: Upload Results of FlowDroid April 2017
-       path: ./fdold_results.zip
+       path: /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/results
