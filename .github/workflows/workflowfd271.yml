@@ -210,7 +210,7 @@ jobs:
           sudo cp taintbench_log.txt upload/taintbench_log.txt
      
     - name: Print Evaluation Results
-      run: tail -5 upload/taintbench_log.txt
+      run: tail -5 TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/upload/taintbench_log.txt
 
     - name: Print Saved Results of FlowDroid 2.7.1
       run: |
