@@ -1,4 +1,4 @@
-name: FlowDroid-April-2017-Nightly
+name: Evaluate FlowDroid April 2017 Nightly
 
 on:
   push:
