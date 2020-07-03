@@ -777,7 +777,7 @@ jobs:
           echo copy the taintbench_brew_configs folder to the BREW folder 
           sudo mv taintbench_brew_configs $BREW/taintbench_brew_configs
 
-    - name: Run Amandroid 3.1.2
+    - name: Run Amandroid 3.2.0
       run: |
           echo create $TOOL/savedResults folder to storing analysis resutls 
           sudo mkdir $TOOL/savedResults             
