@@ -207,12 +207,6 @@ jobs:
           sudo chmod +w $TBMAPPER/results
           
           ls -l -R . 
-          sudo chmod +x $TOOL
-          sudo chmod +x $BREW
-          sudo chmod +x $TBMAPPPER
-          sudo chmod +x $TOOL
-          sudo chmod +x $BREW
-          sudo chmod +x $TBMAPPPER
           
           echo cd to directory of $BREW to execute it 
           cd $BREW
