@@ -239,6 +239,7 @@ jobs:
 
     - name: Run FlowDroid April 2017
       run: |
+          sudo mkdir AnalysisTools/FlowDroid_April_2017_Nightly/savedResults
           sudo chmod -R 777 AnalysisTools/FlowDroid_April_2017_Nightly
           mkdir AnalysisTools/FlowDroid_April_2017_Nightly/results
           sudo chmod -R 777 AnalysisTools/FlowDroid_April_2017_Nightly

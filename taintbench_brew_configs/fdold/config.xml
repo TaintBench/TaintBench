@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <config>
-	<androidPlatforms>platforms</androidPlatforms>
-	<maxMemory>105</maxMemory>
+	<androidPlatforms>/home/runner/work/TaintBench/TaintBench/platforms</androidPlatforms>
+	<maxMemory>20</maxMemory>
 	<tools>
 		<tool name="FlowDroid" version="1" external="false">
 			<priority>1</priority>
