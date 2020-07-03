@@ -207,6 +207,7 @@ jobs:
           java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/$VERSION/config.xml -rules taintbench_brew_configs/$VERSION/TaintBench/rules_3.xml -r -nogui -t 20m > taintbench_log.txt 2>&1
           sudo mkdir upload
           sudo mv data/data_taintbench_16_06_20.zip upload/data_taintbench.zip
+          sudo mv taintbench_log.txt upload/taintbench_log.txt
      
     - name: Print Evaluation Results
       run: tail -5 taintbench_log.txt
