@@ -3,17 +3,17 @@
 	<androidPlatforms>/home/runner/work/TaintBench/TaintBench/platforms</androidPlatforms>
 	<maxMemory>20</maxMemory>
 	<tools>
-		<tool name="FlowDroidOld" version="1" external="false">
+		<tool name="FlowDroid271" version="1" external="false">
 			<priority>1</priority>
 			<execute>
-				<run>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh %MEMORY% %APP_APK% %ANDROID_PLATFORMS% /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/results/%APP_APK_FILENAME%_result.txt %SourcesAndSinks%</run>
-				<result>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/results/%APP_APK_FILENAME%_result.txt</result>
+				<run>java -Xmx%MEMORY%g -jar soot-infoflow-cmd-jar-with-dependencies.jar -a %APP_APK% -p %ANDROID_PLATFORMS% -s %SourcesAndSinks% -o /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release/results/%APP_APK_FILENAME%_result.xml</run>
+				<result>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release/results/%APP_APK_FILENAME%_result.xml</result>
 				<instances>0</instances>
 				<memoryPerInstance>4</memoryPerInstance>
 			</execute>
-			<path>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly</path>
-			<runOnEntry>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh</runOnEntry>
-			<runOnExit>/home/runner/work/TaintBench/TaintBench/TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/flushMemory.sh</runOnExit>
+			<path>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release</path>
+			<runOnEntry>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release/clear.sh<clear.sh</runOnEntry>
+	        <runOnExit>/home/runner/work/TaintBench/TaintBench/TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/flushMemory.sh</runOnExit>
 			<runOnAbort>/home/runner/work/TaintBench/TaintBench/TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/killpid.sh %PID%</runOnAbort>
 			<questions>IntraAppFlows</questions>
 		</tool>
