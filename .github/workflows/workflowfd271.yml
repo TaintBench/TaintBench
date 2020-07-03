@@ -171,6 +171,7 @@ jobs:
       run: |
           echo make sure the scripts are executable
           sudo cp taintbench_brew_configs/flushMemory.sh $BREW/flushMemory.sh
+          sudo cp taintbench_brew_configs/killpid.sh $BREW/killpid.sh
           sudo chmod +x $BREW/flushMemory.sh
           sudo chmod +x $BREW/killpid.sh
          
