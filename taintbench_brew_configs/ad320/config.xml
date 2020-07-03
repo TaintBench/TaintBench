@@ -3,15 +3,15 @@
 	<androidPlatforms>/home/runner/work/TaintBench/TaintBench/platforms</androidPlatforms>
 	<maxMemory>20</maxMemory>
 	<tools>
-    	<tool name="Amandroid312" version="1" external="false">
+    	<tool name="Amandroid320" version="1" external="false">
 			<priority>1</priority>
 			<execute>
-				<run>/home/runner/work/TaintBench/TaintBench/AnalysisTools/Amandroid_3.1.2_Release/aqlRunSS.sh %APP_APK% %MEMORY% %SourcesAndSinks%</run>
-				<result>/home/runner/work/TaintBench/TaintBench/AnalysisTools/Amandroid_3.1.2_Release/outputPath/%APP_APK_FILENAME%/result/AppData.txt</result>
+				<run>/home/runner/work/TaintBench/TaintBench/AnalysisTools/Amandroid_3.2.0_Release/aqlRunSS.sh %APP_APK% %MEMORY% %SourcesAndSinks%</run>
+				<result>/home/runner/work/TaintBench/TaintBench/AnalysisTools/Amandroid_3.2.0_Release/outputPath/%APP_APK_FILENAME%/result/AppData.txt</result>
 				<instances>1</instances>
 				<memoryPerInstance>4</memoryPerInstance>
 			</execute>
-			<path>/home/runner/work/TaintBench/TaintBench/AnalysisTools/Amandroid_3.1.2_Release/</path>
+			<path>/home/runner/work/TaintBench/TaintBench/AnalysisTools/Amandroid_3.2.0_Release/</path>
 	        <runOnExit>/home/runner/work/TaintBench/TaintBench/TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/flushMemory.sh</runOnExit>
 			<runOnAbort>/home/runner/work/TaintBench/TaintBench/TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/killpid.sh %PID%</runOnAbort>
 			<questions>IntraAppFlows</questions>
