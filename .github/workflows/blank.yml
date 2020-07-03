@@ -1,4 +1,4 @@
-name: Evaluation 
+name: Evaluation with TaintBench
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -10,19 +10,28 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "evaluate"
-  evaluate:
+  # This workflow contains a few jobs
+#################################################################################################################################
+#                                             Evaluate FlowDroid April 2017
+#################################################################################################################################
+  Evaluate-FlowDroid-April-2017:
 ######################################################################
 #                 Setup environments 
 ######################################################################
     # The type of runner that the job will run on
     runs-on: ubuntu-20.04
-
+    env: 
+        BREW: /home/runner/work/TaintBench/TaintBench/TBFramework/BREW-2.0.0-SNAPSHOT-EMSE 
+        TBMAPPER: /home/runner/work/TaintBench/TaintBench/TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
+        TOOL: /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly
+        VERSION: fdold
+        CONFIG: taintbench_brew_configs/$VERSION
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-   
+
+    # Install java 8
     - uses: actions/setup-java@v1
       with:
         java-version: '8.0.232' # The JDK version to make available on the path.
@@ -120,38 +129,8 @@ jobs:
 ######################################################################
 #                 Download Analysis Tools 
 ######################################################################
-#                   Amandroid 3.1.2
 #########################################
-    - name: Download Amandroid 3.1.2
-      uses: Legion2/download-release-action@v2.1.0
-      with:
-        repository: TaintBench/TaintBench
-        tag: 'TaintAnalysisTools'
-        path: AnalysisTools
-        file: Amandroid_3.1.2_Release.zip
-
-    - name: Unzip
-      uses: TonyBogdanov/zip@1.0
-      with:
-        args: unzip -qq AnalysisTools/Amandroid_3.1.2_Release.zip -d AnalysisTools
-#########################################
-#                   Amandroid 3.2.0
-#########################################
-
-    - name: Download Amandroid 3.2.0
-      uses: Legion2/download-release-action@v2.1.0
-      with:
-        repository: TaintBench/TaintBench
-        tag: 'TaintAnalysisTools'
-        path: AnalysisTools
-        file: Amandroid_3.2.0_Release.zip
-
-    - name: Unzip
-      uses: TonyBogdanov/zip@1.0
-      with:
-        args: unzip -qq AnalysisTools/Amandroid_3.2.0_Release.zip -d AnalysisTools
-#########################################
-#                   FlowDroid April 2017
+#     Download FlowDroid April 2017
 #########################################
     - name: Download FlowDroid April 2017
       uses: Legion2/download-release-action@v2.1.0
@@ -164,31 +143,13 @@ jobs:
     - name: Unzip
       uses: TonyBogdanov/zip@1.0
       with:
-        args: unzip -qq AnalysisTools/FlowDroid_April_2017_Nightly.zip -d AnalysisTools/FlowDroid_April_2017_Nightly
-
-###########################################
-#                   FlowDroid April 2.7.1          
-############################################
-    - name: Download FlowDroid 2.7.1
-      uses: Legion2/download-release-action@v2.1.0
-      with:
-        repository: TaintBench/TaintBench
-        tag: 'TaintAnalysisTools'
-        path: AnalysisTools
-        file: FlowDroid_2.7.1_Release.zip 
-    
-    - name: Unzip
-      uses: TonyBogdanov/zip@1.0
-      with:
-        args: unzip -qq AnalysisTools/FlowDroid_2.7.1_Release.zip -d AnalysisTools
-        
-######################################################################
+        args: unzip -qq AnalysisTools/FlowDroid_April_2017_Nightly.zip -d AnalysisTools/FlowDroid_April_2017_Nightly       
+#########################################
+#     Clean up and Print infos
+#########################################
     - name: Remove .Zip files
       run: |
-          sudo rm AnalysisTools/Amandroid_3.1.2_Release.zip
-          sudo rm AnalysisTools/Amandroid_3.2.0_Release.zip 
           sudo rm AnalysisTools/FlowDroid_April_2017_Nightly.zip 
-          sudo rm AnalysisTools/FlowDroid_2.7.1_Release.zip
           sudo rm -rf download
     
     - run: ls platforms
@@ -200,66 +161,68 @@ jobs:
     - run: ls TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
 
     - run: ls TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
-
-    - run: ls AnalysisTools/Amandroid_3.1.2_Release
-
-    - run: ls AnalysisTools/Amandroid_3.2.0_Release
     
     - run: ls AnalysisTools/FlowDroid_April_2017_Nightly
 
-    - run: ls AnalysisTools/FlowDroid_2.7.1_Release
-
     - run: ls -R .
-
 ######################################################################
 #                 Run FlowDroid April 2017
 ######################################################################
     - name: Prepare
       run: |
-          sudo chmod +x TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/flushMemory.sh
-          sudo chmod +x TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/killpid.sh
-          ls -l TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/flushMemory.sh
-          ls -l TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/killpid.sh
+          echo make sure the scripts are executable
+          sudo chmod +x $BREW/flushMemory.sh
+          sudo chmod +  $BREW/killpid.sh
 
-          sudo cp taintbench_brew_configs/fdold/aqlRunSS.sh AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh
-          sudo chmod +x AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh
-          ls -l AnalysisTools/FlowDroid_April_2017_Nightly/aqlRunSS.sh
-
-          sudo cp taintbench_brew_configs/fdold/clear.sh AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh
-          sudo chmod +x AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh
-          ls -l AnalysisTools/FlowDroid_April_2017_Nightly/clear.sh
-
-          echo remove TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/config.properties
-          sudo rm TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/config.properties
-
-          echo copy taintbench_brew_configs/config.properties to TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/config.properties
-          sudo mv taintbench_brew_configs/config.properties TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/config.properties
-
-          sudo mv taintbench_brew_configs TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/taintbench_brew_configs
+          echo copy the script aqlRunSS.sh to run FlowDroid and make sure it is executable 
+          sudo cp $CONFIG/aqlRunSS.sh $TOOL/aqlRunSS.sh
+          sudo chmod +x $TOOL/aqlRunSS.sh            
+         
+          echo copy the script clear.sh to clear previous analysis results and make sure it is executable 
+          sudo cp $CONFIG/clear.sh $TOOL/clear.sh
+          sudo chmod +x $TOOL/clear.sh
+          
+          echo copy the configured config.properties to the BREW Folder 
+          echo remove $BREW/config.properties
+          sudo rm $BREW/config.properties
+          echo copy taintbench_brew_configs/config.properties to $BREW/config.properties
+          sudo mv taintbench_brew_configs/config.properties $BREW/config.properties
+          
+          echo copy the taintbench_brew_configs folder to the BREW folder 
+          sudo mv taintbench_brew_configs $BREW/taintbench_brew_configs
 
     - name: Run FlowDroid April 2017
       run: |
-          sudo mkdir AnalysisTools/FlowDroid_April_2017_Nightly/savedResults
-          sudo chmod -R 777 AnalysisTools/FlowDroid_April_2017_Nightly
-          mkdir AnalysisTools/FlowDroid_April_2017_Nightly/results
-          sudo chmod -R 777 AnalysisTools/FlowDroid_April_2017_Nightly
+          echo create $TOOL/savedResults folder to storing analysis resutls 
+          sudo mkdir $TOOL/savedResults         
           
-          sudo chmod -R 777 TBFramework/BREW-2.0.0-SNAPSHOT-EMSE 
+          echo create $TOOL/results folder to store intermediate result of each apk. 
+          sudo mkdir $TOOL/results
           
-          sudo chmod -R 777 TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
-          mkdir TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE/results
-          sudo chmod -R 777 TBFramework/TBSaSMapper-1.0-SNAPSHOT-EMSE
+          echo create $TBMAPPER/results folder to store list of sources and sinks for each apk 
+          sudo mkdir $TBMAPPER/results
           
-          cd TBFramework/BREW-2.0.0-SNAPSHOT-EMSE
-          ls .
-          echo Run FlowDroid April 2017
-          java -version 
-          java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/fdold/config.xml -rules taintbench_brew_configs/fdold/TaintBench/rules_3.xml -r -nogui -t 20m 
+          echo make sure the folders of TOOL and BREW and TBMAPPER can be read, write and executed.
+          sudo chmod -R +rwx $TOOL
+          sudo chmod -R +rwx $BREW
+          sudo chmod -R +rwx $TBMAPPPER
+          
+          echo cd to directory of BREW to execute it 
+          cd $BREW
+          java -jar BREW-2.0.0-SNAPSHOT.jar -data data/data_taintbench_16_06_20.zip -d detailed -c taintbench_brew_configs/$VERSION/config.xml -rules taintbench_brew_configs/$VERSION/TaintBench/rules_3.xml -r -nogui -t 20m
+          sudo mv data/data_taintbench_16_06_20.zip data/data_taintbench_$VERSION.zip
 
-    - name: Print Saved Results of FlowDroid April 2017
-      run: ls /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/savedResults
+    - name: Print Saved Results of April 2017
+      run: |
+           ls -R $BREW
+           ls -R $TOOL
 
     - uses: actions/upload-artifact@v2
       with:
-       name: Upload Results of FlowDroid April 2017
-       path: /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/savedResults
+       name: BREW Benchmark File with Evaluation Results FlowDroid April 2017
+       path: $BREW/data/data_taintbench_$VERSION.zip
+
+    - uses: actions/upload-artifact@v2
+      with:
+       name: Raw Results of FlowDroid April 2017
+       path: $TOOL/savedResults
