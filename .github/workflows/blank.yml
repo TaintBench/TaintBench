@@ -259,9 +259,9 @@ jobs:
     - name: Zip Results of FlowDroid April 2017
       uses: TonyBogdanov/zip@1.0
       with:
-        args: zip -qq -r ./fdold_results.zip /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/results
+        args: zip -qq -r /home/runner/work/TaintBench/TaintBench/fdold_results.zip /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_April_2017_Nightly/results
 
     - uses: actions/upload-artifact@v2
       with:
-      name: Upload Results of FlowDroid April 2017
-         path: fdold_results.zip
+       name: Upload Results of FlowDroid April 2017
+       path: /home/runner/work/TaintBench/TaintBench/fdold_results.zip
