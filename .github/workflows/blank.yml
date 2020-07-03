@@ -33,7 +33,7 @@ jobs:
     - name: Zip Test
       uses: TonyBogdanov/zip@1.0
       with:
-        args: zip -qq -r ./test.zip /home/runner/work/TaintBench/TaintBench/taintbench_brew_configs
+        args: zip -qq -r ./test.zip . -i /home/runner/work/TaintBench/TaintBench/taintbench_brew_configs
 ######################################################################
 #                 Download TaintBench Framework Tools 
 ######################################################################
