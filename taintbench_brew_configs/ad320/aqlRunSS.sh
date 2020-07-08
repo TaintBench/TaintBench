@@ -3,8 +3,10 @@
 # Update Sources and Sinks
 if [ -d "~/.amandroid_stash/amandroid/taintAnalysis/sourceAndSinks/TaintSourcesAndSinks.txt" ]; then 
     sudo mv ~/.amandroid_stash/amandroid/taintAnalysis/sourceAndSinks/TaintSourcesAndSinks.txt ~/.amandroid_stash/amandroid/taintAnalysis/sourceAndSinks/TaintSourcesAndSinks_bak.txt
-    sudo cp -v ${3} ~/.amandroid_stash/amandroid/taintAnalysis/sourceAndSinks/TaintSourcesAndSinks.txt
 fi
+
+echo cp -v ${3} ~/.amandroid_stash/amandroid/taintAnalysis/sourceAndSinks/TaintSourcesAndSinks.txt
+sudo cp -v ${3} ~/.amandroid_stash/amandroid/taintAnalysis/sourceAndSinks/TaintSourcesAndSinks.txt
 
 # Clear Amandroid Results 
 if [ -d "outputPath" ]; then 

@@ -9,7 +9,7 @@
 				<run>/home/runner/work/TaintBench/TaintBench/AnalysisTools/Amandroid_3.2.0_Release/aqlRunSS.sh %APP_APK% %MEMORY% %SourcesAndSinks%</run>
 				<result>/home/runner/work/TaintBench/TaintBench/AnalysisTools/Amandroid_3.2.0_Release/outputPath/%APP_APK_FILENAME%/result/AppData.txt</result>
 				<instances>1</instances>
-				<memoryPerInstance>4</memoryPerInstance>
+				<memoryPerInstance>6</memoryPerInstance>
 			</execute>
 			<path>/home/runner/work/TaintBench/TaintBench/AnalysisTools/Amandroid_3.2.0_Release/</path>
 	        <runOnExit>/home/runner/work/TaintBench/TaintBench/TBFramework/BREW-2.0.0-SNAPSHOT-EMSE/flushMemory.sh</runOnExit>
