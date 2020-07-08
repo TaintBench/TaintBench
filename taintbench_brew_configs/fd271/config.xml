@@ -9,7 +9,7 @@
 				<run>java -Xmx%MEMORY%g -jar soot-infoflow-cmd-jar-with-dependencies.jar -a %APP_APK% -p %ANDROID_PLATFORMS% -s %SourcesAndSinks% -o /home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release/results/%APP_APK_FILENAME%_result.xml</run>
 				<result>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release/results/%APP_APK_FILENAME%_result.xml</result>
 				<instances>0</instances>
-				<memoryPerInstance>6</memoryPerInstance>
+				<memoryPerInstance>4</memoryPerInstance>
 			</execute>
 			<path>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release</path>
 			<runOnEntry>/home/runner/work/TaintBench/TaintBench/AnalysisTools/FlowDroid_2.7.1_Release/clear.sh</runOnEntry>
