@@ -1,0 +1,721 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://github.com/TaintBench/TaintBench/blob/master/TAF-schema.json",
+    "type": "object",
+    "title": "The TAF schema",
+    "description": "Taint Analysis Benchmark Format (TAF)",
+    "default": {},
+    "examples": [
+        {
+            "fileName": "backflash.apk",
+            "day": "2019-10-02",
+            "findings": [
+                {
+                    "source": {
+                        "statement": "String BotLocation = telephonyManager.getSimCountryIso();",
+                        "methodName": "public void onCreate()",
+                        "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                        "lineNo": 59,
+                        "decompiledSourceLineNo": 59,
+                        "targetName": "getSimCountryIso",
+                        "targetNo": 1,
+                        "IRs": [
+                            {
+                                "type": "Jimple",
+                                "IRstatement": "$r9 = virtualinvoke $r4.<android.telephony.TelephonyManager: java.lang.String getSimCountryIso()>()"
+                            }
+                        ]
+                    },
+                    "sink": {
+                        "statement": "outputStreamWriter.write(data);",
+                        "methodName": "private void writeConfig(String config, String data)",
+                        "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                        "lineNo": 168,
+                        "decompiledSourceLineNo": 168,
+                        "targetName": "write",
+                        "targetNo": 1,
+                        "IRs": [
+                            {
+                                "type": "Jimple",
+                                "IRstatement": "virtualinvoke $r3.<java.io.OutputStreamWriter: void write(java.lang.String)>($r2)"
+                            }
+                        ]
+                    },
+                    "intermediateFlows": [
+                        {
+                            "statement": "writeConfig(\"BotLocation\", BotLocation);",
+                            "methodName": "public void onCreate()",
+                            "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                            "lineNo": 80,
+                            "decompiledSourceLineNo": 168,
+                            "ID": 1
+                        }
+                    ],
+                    "attributes": {
+                        "lifecycle": true,
+                        "partialFlow": true
+                    },
+                    "ID": 1,
+                    "description": "This malicious flow leaks the SIM country code into an OutputStream, writing to data that is later read by following flow.",
+                    "isNegative": false
+                }
+            ]
+        }
+    ],
+    "required": [
+        "fileName",
+        "day",
+        "findings"
+    ],
+    "properties": {
+        "fileName": {
+            "$id": "#/properties/fileName",
+            "default": "",
+            "description": "The application file name.",
+            "examples": [
+                "backflash.apk"
+            ],
+            "title": "The fileName schema",
+            "type": "string"
+        },
+        "day": {
+            "$id": "#/properties/day",
+            "default": "",
+            "description": "The creation date",
+            "examples": [
+                "2019-10-02"
+            ],
+            "title": "The day schema",
+            "type": "string"
+        },
+        "findings": {
+            "$id": "#/properties/findings",
+            "default": [],
+            "description": "The specificed taint flows.",
+            "examples": [
+                [
+                    {
+                        "source": {
+                            "statement": "String BotLocation = telephonyManager.getSimCountryIso();",
+                            "methodName": "public void onCreate()",
+                            "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                            "lineNo": 59,
+                            "decompiledSourceLineNo": 59,
+                            "targetName": "getSimCountryIso",
+                            "targetNo": 1,
+                            "IRs": [
+                                {
+                                    "type": "Jimple",
+                                    "IRstatement": "$r9 = virtualinvoke $r4.<android.telephony.TelephonyManager: java.lang.String getSimCountryIso()>()"
+                                }
+                            ]
+                        },
+                        "sink": {
+                            "statement": "outputStreamWriter.write(data);",
+                            "methodName": "private void writeConfig(String config, String data)",
+                            "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                            "lineNo": 168,
+                            "decompiledSourceLineNo": 168,
+                            "targetName": "write",
+                            "targetNo": 1,
+                            "IRs": [
+                                {
+                                    "type": "Jimple",
+                                    "IRstatement": "virtualinvoke $r3.<java.io.OutputStreamWriter: void write(java.lang.String)>($r2)"
+                                }
+                            ]
+                        },
+                        "intermediateFlows": [
+                            {
+                                "statement": "writeConfig(\"BotLocation\", BotLocation);",
+                                "methodName": "public void onCreate()",
+                                "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                                "lineNo": 80,
+                                "decompiledSourceLineNo": 168,
+                                "ID": 1
+                            }
+                        ],
+                        "attributes": {
+                            "lifecycle": true,
+                            "partialFlow": true
+                        },
+                        "ID": 1,
+                        "description": "This malicious flow leaks the SIM country code into an OutputStream, writing to data that is later read by following flow.",
+                        "isNegative": false
+                    }
+                ]
+            ],
+            "title": "The findings schema",
+            "type": "array",
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/findings/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/findings/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An array of specified taint flows",
+                        "default": {},
+                        "examples": [
+                            {
+                                "source": {
+                                    "statement": "String BotLocation = telephonyManager.getSimCountryIso();",
+                                    "methodName": "public void onCreate()",
+                                    "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                                    "lineNo": 59,
+                                    "decompiledSourceLineNo": 59,
+                                    "targetName": "getSimCountryIso",
+                                    "targetNo": 1,
+                                    "IRs": [
+                                        {
+                                            "type": "Jimple",
+                                            "IRstatement": "$r9 = virtualinvoke $r4.<android.telephony.TelephonyManager: java.lang.String getSimCountryIso()>()"
+                                        }
+                                    ]
+                                },
+                                "sink": {
+                                    "statement": "outputStreamWriter.write(data);",
+                                    "methodName": "private void writeConfig(String config, String data)",
+                                    "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                                    "lineNo": 168,
+                                    "decompiledSourceLineNo": 168,
+                                    "targetName": "write",
+                                    "targetNo": 1,
+                                    "IRs": [
+                                        {
+                                            "type": "Jimple",
+                                            "IRstatement": "virtualinvoke $r3.<java.io.OutputStreamWriter: void write(java.lang.String)>($r2)"
+                                        }
+                                    ]
+                                },
+                                "intermediateFlows": [
+                                    {
+                                        "statement": "writeConfig(\"BotLocation\", BotLocation);",
+                                        "methodName": "public void onCreate()",
+                                        "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                                        "lineNo": 80,
+                                        "decompiledSourceLineNo": 168,
+                                        "ID": 1
+                                    }
+                                ],
+                                "attributes": {
+                                    "lifecycle": true,
+                                    "partialFlow": true
+                                },
+                                "ID": 1,
+                                "description": "This malicious flow leaks the SIM country code into an OutputStream, writing to data that is later read by following flow.",
+                                "isNegative": false
+                            }
+                        ],
+                        "required": [
+                            "source",
+                            "sink",
+                            "intermediateFlows",
+                            "attributes",
+                            "ID",
+                            "description",
+                            "isNegative"
+                        ],
+                        "properties": {
+                            "source": {
+                                "$id": "#/properties/findings/items/anyOf/0/properties/source",
+                                "default": {},
+                                "description": "The source of the taint flow.",
+                                "examples": [
+                                    {
+                                        "statement": "String BotLocation = telephonyManager.getSimCountryIso();",
+                                        "methodName": "public void onCreate()",
+                                        "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                                        "lineNo": 59,
+                                        "decompiledSourceLineNo": 59,
+                                        "targetName": "getSimCountryIso",
+                                        "targetNo": 1,
+                                        "IRs": [
+                                            {
+                                                "type": "Jimple",
+                                                "IRstatement": "$r9 = virtualinvoke $r4.<android.telephony.TelephonyManager: java.lang.String getSimCountryIso()>()"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "required": [
+                                    "statement",
+                                    "methodName",
+                                    "className",
+                                    "lineNo",
+                                    "targetName",
+                                    "targetNo"
+                                ],
+                                "title": "The source schema",
+                                "type": "object",
+                                "properties": {
+                                    "statement": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/statement",
+                                        "default": "",
+                                        "description": "The statement in source code.",
+                                        "examples": [
+                                            "String BotLocation = telephonyManager.getSimCountryIso();"
+                                        ],
+                                        "title": "The statement schema",
+                                        "type": "string"
+                                    },
+                                    "methodName": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/methodName",
+                                        "default": "",
+                                        "description": "The method signature in source code",
+                                        "examples": [
+                                            "public void onCreate()"
+                                        ],
+                                        "title": "The methodName schema",
+                                        "type": "string"
+                                    },
+                                    "className": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/className",
+                                        "default": "",
+                                        "description": "The class signature.",
+                                        "examples": [
+                                            "com.adobe.flashplayer_.AdobeFlashCore"
+                                        ],
+                                        "title": "The className schema",
+                                        "type": "string"
+                                    },
+                                    "lineNo": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/lineNo",
+                                        "default": 0,
+                                        "description": "The line number in byte code.",
+                                        "examples": [
+                                            59
+                                        ],
+                                        "title": "The lineNo schema",
+                                        "type": "integer"
+                                    },
+                                    "decompiledSourceLineNo": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/decompiledSourceLineNo",
+                                        "default": 0,
+                                        "description": "The line number in the decomplied source code, might be different than the line number in byte code.",
+                                        "examples": [
+                                            59
+                                        ],
+                                        "title": "The decompiledSourceLineNo schema",
+                                        "type": "integer"
+                                    },
+                                    "targetName": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/targetName",
+                                        "default": "",
+                                        "description": "The method call specified in the statement.",
+                                        "examples": [
+                                            "getSimCountryIso"
+                                        ],
+                                        "title": "The targetName schema",
+                                        "type": "string"
+                                    },
+                                    "targetNo": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/targetNo",
+                                        "default": 1,
+                                        "description": "The order (from left to right) of the targetName in the statement. For a statement foo(foo(foo(x))), the targetName foo appears three times, targetNo = 1 specifies the first foo from left to right. targetNo = 2 specifies the foo in the middle.",
+                                        "examples": [
+                                            1
+                                        ],
+                                        "title": "The targetNo schema",
+                                        "type": "integer"
+                                    },
+                                    "IRs": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/IRs",
+                                        "default": [],
+                                        "description": "Intermediate representations of the statement.",
+                                        "examples": [
+                                            [
+                                                {
+                                                    "type": "Jimple",
+                                                    "IRstatement": "$r9 = virtualinvoke $r4.<android.telephony.TelephonyManager: java.lang.String getSimCountryIso()>()"
+                                                }
+                                            ]
+                                        ],
+                                        "title": "The IRs schema",
+                                        "type": "array",
+                                        "additionalItems": true,
+                                        "items": {
+                                            "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/IRs/items",
+                                            "anyOf": [
+                                                {
+                                                    "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/IRs/items/anyOf/0",
+                                                    "type": "object",
+                                                    "title": "The first anyOf schema",
+                                                    "description": "The intermediate representation for the specified statement.",
+                                                    "default": {},
+                                                    "examples": [
+                                                        {
+                                                            "type": "Jimple",
+                                                            "IRstatement": "$r9 = virtualinvoke $r4.<android.telephony.TelephonyManager: java.lang.String getSimCountryIso()>()"
+                                                        }
+                                                    ],
+                                                    "required": [
+                                                        "type",
+                                                        "IRstatement"
+                                                    ],
+                                                    "properties": {
+                                                        "type": {
+                                                            "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/IRs/items/anyOf/0/properties/type",
+                                                            "default": "",
+                                                            "description": "Name of the IR",
+                                                            "examples": [
+                                                                "Jimple"
+                                                            ],
+                                                            "title": "The type schema",
+                                                            "type": "string"
+                                                        },
+                                                        "IRstatement": {
+                                                            "$id": "#/properties/findings/items/anyOf/0/properties/source/properties/IRs/items/anyOf/0/properties/IRstatement",
+                                                            "default": "",
+                                                            "description": "IR statement for the specificied source code statement.",
+                                                            "examples": [
+                                                                "$r9 = virtualinvoke $r4.<android.telephony.TelephonyManager: java.lang.String getSimCountryIso()>()"
+                                                            ],
+                                                            "title": "The IRstatement schema",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "additionalProperties": true
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "additionalProperties": true
+                            },
+                            "sink": {
+                                "$id": "#/properties/findings/items/anyOf/0/properties/sink",
+                                "default": {},
+                                "description": "The sink of the taint flow.",
+                                "examples": [
+                                    {
+                                        "statement": "outputStreamWriter.write(data);",
+                                        "methodName": "private void writeConfig(String config, String data)",
+                                        "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                                        "lineNo": 168,
+                                        "decompiledSourceLineNo": 168,
+                                        "targetName": "write",
+                                        "targetNo": 1,
+                                        "IRs": [
+                                            {
+                                                "type": "Jimple",
+                                                "IRstatement": "virtualinvoke $r3.<java.io.OutputStreamWriter: void write(java.lang.String)>($r2)"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "required": [
+                                    "statement",
+                                    "methodName",
+                                    "className",
+                                    "lineNo",
+                                    "targetName",
+                                    "targetNo"
+                                ],
+                                "title": "The sink schema",
+                                "type": "object",
+                                "properties": {
+                                    "statement": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/statement",
+                                        "type": "string",
+                                        "title": "The statement schema",
+                                        "description": "The statement in source code.",
+                                        "default": "",
+                                        "examples": [
+                                            "outputStreamWriter.write(data);"
+                                        ]
+                                    },
+                                    "methodName": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/methodName",
+                                        "type": "string",
+                                        "title": "The methodName schema",
+                                        "description": "The method signature in source code",
+                                        "default": "",
+                                        "examples": [
+                                            "private void writeConfig(String config, String data)"
+                                        ]
+                                    },
+                                    "className": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/className",
+                                        "type": "string",
+                                        "title": "The className schema",
+                                        "description": "The class signature.",
+                                        "default": "",
+                                        "examples": [
+                                            "com.adobe.flashplayer_.AdobeFlashCore"
+                                        ]
+                                    },
+                                    "lineNo": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/lineNo",
+                                        "type": "integer",
+                                        "title": "The lineNo schema",
+                                        "description": "The line number in byte code.",
+                                        "default": 0,
+                                        "examples": [
+                                            168
+                                        ]
+                                    },
+                                    "decompiledSourceLineNo": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/decompiledSourceLineNo",
+                                        "type": "integer",
+                                        "title": "The decompiledSourceLineNo schema",
+                                        "description": "The line number in the decomplied source code, might be different than the line number in byte code.",
+                                        "default": 0,
+                                        "examples": [
+                                            168
+                                        ]
+                                    },
+                                    "targetName": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/targetName",
+                                        "type": "string",
+                                        "title": "The targetName schema",
+                                        "description": "The method call specified in the statement.",
+                                        "default": "",
+                                        "examples": [
+                                            "write"
+                                        ]
+                                    },
+                                    "targetNo": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/targetNo",
+                                        "type": "integer",
+                                        "title": "The targetNo schema",
+                                        "description":"The order (from left to right) of the targetName in the statement. For a statement foo(foo(foo(x))), the targetName foo appears three times, targetNo = 1 specifies the first foo from left to right. targetNo = 2 specifies the foo in the middle.",
+                                        "default": 1,
+                                        "examples": [
+                                            1
+                                        ]
+                                    },
+                                    "IRs": {
+                                        "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/IRs",
+                                        "type": "array",
+                                        "title": "The IRs schema",
+                                        "description": "Intermediate representations of the statement.",
+                                        "default": [],
+                                        "examples": [
+                                            [
+                                                {
+                                                    "type": "Jimple",
+                                                    "IRstatement": "virtualinvoke $r3.<java.io.OutputStreamWriter: void write(java.lang.String)>($r2)"
+                                                }
+                                            ]
+                                        ],
+                                        "additionalItems": true,
+                                        "items": {
+                                            "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/IRs/items",
+                                            "anyOf": [
+                                                {
+                                                    "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/IRs/items/anyOf/0",
+                                                    "type": "object",
+                                                    "title": "The first anyOf schema",
+                                                    "description": "Intermediate representations of the statement.",
+                                                    "default": {},
+                                                    "examples": [
+                                                        {
+                                                            "type": "Jimple",
+                                                            "IRstatement": "virtualinvoke $r3.<java.io.OutputStreamWriter: void write(java.lang.String)>($r2)"
+                                                        }
+                                                    ],
+                                                    "required": [
+                                                        "type",
+                                                        "IRstatement"
+                                                    ],
+                                                    "properties": {
+                                                        "type": {
+                                                            "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/IRs/items/anyOf/0/properties/type",
+                                                            "type": "string",
+                                                            "title": "The type schema",
+                                                            "description": "The name of the intermediate representation.",
+                                                            "default": "",
+                                                            "examples": [
+                                                                "Jimple"
+                                                            ]
+                                                        },
+                                                        "IRstatement": {
+                                                            "$id": "#/properties/findings/items/anyOf/0/properties/sink/properties/IRs/items/anyOf/0/properties/IRstatement",
+                                                            "type": "string",
+                                                            "title": "The IRstatement schema",
+                                                            "description": "The IR statement of the specified statement.",
+                                                            "default": "",
+                                                            "examples": [
+                                                                "virtualinvoke $r3.<java.io.OutputStreamWriter: void write(java.lang.String)>($r2)"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "additionalProperties": true
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "additionalProperties": true
+                            },
+                            "intermediateFlows": {
+                                "$id": "#/properties/findings/items/anyOf/0/properties/intermediateFlows",
+                                "type": "array",
+                                "title": "The intermediateFlows schema",
+                                "description": "The intermediate data flows from source to sink.",
+                                "default": [],
+                                "examples": [
+                                    [
+                                        {
+                                            "statement": "writeConfig(\"BotLocation\", BotLocation);",
+                                            "methodName": "public void onCreate()",
+                                            "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                                            "lineNo": 80,
+                                            "decompiledSourceLineNo": 168,
+                                            "ID": 1
+                                        }
+                                    ]
+                                ],
+                                "additionalItems": true,
+                                "items": {
+                                    "$id": "#/properties/findings/items/anyOf/0/properties/intermediateFlows/items",
+                                    "anyOf": [
+                                        {
+                                            "$id": "#/properties/findings/items/anyOf/0/properties/intermediateFlows/items/anyOf/0",
+                                            "type": "object",
+                                            "title": "The first anyOf schema",
+                                            "description": "The intermediate data flows from source to sink.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "statement": "writeConfig(\"BotLocation\", BotLocation);",
+                                                    "methodName": "public void onCreate()",
+                                                    "className": "com.adobe.flashplayer_.AdobeFlashCore",
+                                                    "lineNo": 80,
+                                                    "decompiledSourceLineNo": 168,
+                                                    "ID": 1
+                                                }
+                                            ],
+                                            "required": [
+                                                "statement",
+                                                "methodName",
+                                                "className",
+                                                "lineNo",
+                                                "ID"
+                                            ],
+                                            "properties": {
+                                                "statement": {
+                                                    "$id": "#/properties/findings/items/anyOf/0/properties/intermediateFlows/items/anyOf/0/properties/statement",
+                                                    "type": "string",
+                                                    "title": "The statement schema",
+                                                    "description": "The statement in source code.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "writeConfig(\"BotLocation\", BotLocation);"
+                                                    ]
+                                                },
+                                                "methodName": {
+                                                    "$id": "#/properties/findings/items/anyOf/0/properties/intermediateFlows/items/anyOf/0/properties/methodName",
+                                                    "type": "string",
+                                                    "title": "The methodName schema",
+                                                    "description": "The method signature in source code",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "public void onCreate()"
+                                                    ]
+                                                },
+                                                "className": {
+                                                    "$id": "#/properties/findings/items/anyOf/0/properties/intermediateFlows/items/anyOf/0/properties/className",
+                                                    "type": "string",
+                                                    "title": "The className schema",
+                                                    "description":  "The class signature.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "com.adobe.flashplayer_.AdobeFlashCore"
+                                                    ]
+                                                },
+                                                "lineNo": {
+                                                    "$id": "#/properties/findings/items/anyOf/0/properties/intermediateFlows/items/anyOf/0/properties/lineNo",
+                                                    "type": "integer",
+                                                    "title": "The lineNo schema",
+                                                    "description": "The line number in byte code.",
+                                                    "default": 0,
+                                                    "examples": [
+                                                        80
+                                                    ]
+                                                },
+                                                "decompiledSourceLineNo": {
+                                                    "$id": "#/properties/findings/items/anyOf/0/properties/intermediateFlows/items/anyOf/0/properties/decompiledSourceLineNo",
+                                                    "type": "integer",
+                                                    "title": "The decompiledSourceLineNo schema",
+                                                    "description": "The line number in the decomplied source code, might be different than the line number in byte code.",
+                                                    "default": 0,
+                                                    "examples": [
+                                                        168
+                                                    ]
+                                                },
+                                                "ID": {
+                                                    "$id": "#/properties/findings/items/anyOf/0/properties/intermediateFlows/items/anyOf/0/properties/ID",
+                                                    "type": "integer",
+                                                    "title": "The ID schema",
+                                                    "description": "An unique ID for ordering the intermediate flows.",
+                                                    "default": 0,
+                                                    "examples": [
+                                                        1
+                                                    ]
+                                                }
+                                            },
+                                            "additionalProperties": true
+                                        }
+                                    ]
+                                }
+                            },
+                            "attributes": {
+                                "$id": "#/properties/findings/items/anyOf/0/properties/attributes",
+                                "type": "object",
+                                "title": "The attributes schema",
+                                "description": "A list of atttributes identified for this taint flow.",
+                                "default": {},
+                                "examples": [
+                                    {
+                                        "lifecycle": true,
+                                        "partialFlow": true
+                                    }
+                                ],
+                                "required": [
+                                ],
+                                "properties": {
+                                },
+                                "additionalProperties": true
+                            },
+                            "ID": {
+                                "$id": "#/properties/findings/items/anyOf/0/properties/ID",
+                                "type": "integer",
+                                "title": "The ID schema",
+                                "description": "An unqiue ID for the specified taint flow.",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "description": {
+                                "$id": "#/properties/findings/items/anyOf/0/properties/description",
+                                "type": "string",
+                                "title": "The description schema",
+                                "description": "A description explaining the specified taint flow.",
+                                "default": "",
+                                "examples": [
+                                    "This malicious flow leaks the SIM country code into an OutputStream, writing to data that is later read by following flow."
+                                ]
+                            },
+                            "isNegative": {
+                                "$id": "#/properties/findings/items/anyOf/0/properties/isNegative",
+                                "type": "boolean",
+                                "title": "The isNegative schema",
+                                "description": "Ture if this is an unexpected (negative) flow, false if this is an expected (positive) flow.",
+                                "default": false,
+                                "examples": [
+                                    false
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": true
+}
